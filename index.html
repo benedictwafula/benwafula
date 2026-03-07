@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BHF Apparel | Shoe Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#home" class="logo">BHF Apparel</a>
+    <nav class="nav-links">
+      <a href="#catalog">Shop</a>
+      <a href="#checkout">Checkout</a>
+      <button id="open-cart-btn" class="cart-toggle" type="button" aria-label="Open cart">
+        Cart <span id="cart-count" class="count-badge">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="kicker">Street Meets Performance</p>
+        <h1>Fresh Kicks for Everyday Grind.</h1>
+        <p>
+          BHF Apparel brings premium men and women shoe drops designed for comfort, style,
+          and confidence. Browse, pick your size, and place your M-Pesa order in minutes.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalog">Shop Shoes</a>
+          <button class="btn btn-secondary" id="hero-open-cart" type="button">View Cart</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <p>Flat Shipping</p>
+        <strong id="hero-shipping-fee">KES 0</strong>
+        <span>Across Kenya</span>
+      </div>
+    </section>
+
+    <section class="section featured-section">
+      <div class="section-head">
+        <h2>Featured Drops</h2>
+        <p>Best-selling picks this week.</p>
+      </div>
+      <div id="featured-grid" class="product-grid"></div>
+    </section>
+
+    <section id="catalog" class="section catalog-section">
+      <div class="section-head">
+        <h2>Shop All Shoes</h2>
+        <p>Filter by style and size to find your perfect pair.</p>
+      </div>
+
+      <div class="filters">
+        <label>
+          Search
+          <input id="search-input" type="text" placeholder="Search shoe name">
+        </label>
+        <label>
+          Category
+          <select id="category-filter">
+            <option value="all">All categories</option>
+          </select>
+        </label>
+        <label>
+          Size
+          <select id="size-filter">
+            <option value="all">All sizes</option>
+          </select>
+        </label>
+        <button id="reset-filters" class="btn btn-secondary" type="button">Reset Filters</button>
+      </div>
+
+      <p id="catalog-meta" class="catalog-meta"></p>
+      <div id="catalog-grid" class="product-grid"></div>
+      <p id="catalog-empty" class="empty-state hidden">No products match your filters yet.</p>
+    </section>
+
+    <section id="checkout" class="section checkout-section">
+      <div class="section-head">
+        <h2>Checkout</h2>
+        <p>Complete your details to place an order and pay via M-Pesa manually.</p>
+      </div>
+
+      <div class="checkout-layout">
+        <form id="checkout-form" class="checkout-form" novalidate>
+          <label>
+            Full Name
+            <input id="customer-name" name="name" type="text" required>
+          </label>
+          <label>
+            Phone Number
+            <input id="customer-phone" name="phone" type="tel" required placeholder="07XXXXXXXX">
+          </label>
+          <label>
+            Delivery Location
+            <input id="delivery-location" name="location" type="text" required placeholder="Town, area, landmark">
+          </label>
+          <label>
+            Notes (optional)
+            <textarea id="order-notes" name="notes" rows="3" placeholder="Any special delivery notes"></textarea>
+          </label>
+          <label>
+            Payment Method
+            <input type="text" value="M-Pesa" readonly>
+          </label>
+          <p class="hint">After placing order, WhatsApp opens with your order summary for M-Pesa confirmation.</p>
+          <p id="form-error" class="form-error hidden"></p>
+          <button id="place-order-btn" class="btn btn-primary" type="submit">Place Order via WhatsApp</button>
+        </form>
+
+        <aside class="checkout-summary">
+          <h3>Order Summary</h3>
+          <div id="checkout-items" class="summary-items"></div>
+          <p id="checkout-empty" class="empty-state hidden">Your cart is empty. Add products first.</p>
+          <div class="totals">
+            <p><span>Subtotal</span><strong id="summary-subtotal">KES 0</strong></p>
+            <p><span>Shipping</span><strong id="summary-shipping">KES 0</strong></p>
+            <p class="grand-total"><span>Total</span><strong id="summary-total">KES 0</strong></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="success" class="section success-section hidden">
+      <h2>Order Submitted</h2>
+      <p id="success-message"></p>
+      <button id="continue-shopping" class="btn btn-primary" type="button">Continue Shopping</button>
+    </section>
+  </main>
+
+  <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button id="close-cart-btn" class="icon-btn" type="button" aria-label="Close cart">x</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <p id="cart-empty" class="empty-state hidden">Your cart is empty.</p>
+    <div class="cart-footer">
+      <p><span>Subtotal</span><strong id="cart-subtotal">KES 0</strong></p>
+      <p><span>Shipping</span><strong id="cart-shipping">KES 0</strong></p>
+      <p class="grand-total"><span>Total</span><strong id="cart-total">KES 0</strong></p>
+      <button id="go-checkout-btn" class="btn btn-primary" type="button">Go to Checkout</button>
+    </div>
+  </aside>
+
+  <div id="cart-backdrop" class="backdrop"></div>
+
+  <div id="product-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <button id="close-modal-btn" class="icon-btn modal-close" type="button" aria-label="Close product">x</button>
+      <img id="modal-image" src="" alt="Product image">
+      <div class="modal-content">
+        <p id="modal-category" class="product-chip"></p>
+        <h3 id="modal-name"></h3>
+        <p id="modal-description"></p>
+        <p id="modal-price" class="price"></p>
+        <div class="size-picker">
+          <p>Pick size:</p>
+          <div id="modal-sizes"></div>
+        </div>
+        <p id="modal-error" class="form-error hidden"></p>
+        <button id="modal-add-btn" class="btn btn-primary" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>2026 BHF Apparel. Shoe Store MVP.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
