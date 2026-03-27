@@ -140,7 +140,7 @@ button {
   border: none;
   border-radius: 8px;
   background: var(--accent2);
-  color: #fff;
+  color: #b5a5d3;
   font-size: 0.95rem;
   font-family: inherit;
   cursor: pointer;
@@ -406,6 +406,7 @@ button:hover {
   border-radius: 10px;
   background: rgba(181, 165, 211, 0.08);
   border: 1px solid rgba(181, 165, 211, 0.15);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -711,10 +712,4 @@ footer {
     height: 160px;
   }
 }
-
-
-
-
-
-
 
