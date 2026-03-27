@@ -11,7 +11,10 @@
     <header>
         <nav>
             <h2 class="logo">BW</h2>
-            <ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                ☰
+              </button>
+              <ul id="navMenu">
                 <li><a href="#about">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#services">Services</a></li>
@@ -327,5 +330,15 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+      
+        menuToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('show');
+          menuToggle.setAttribute('aria-expanded', navMenu.classList.contains('show'));
+        });
+      </script>
+      
 </body>
 </html>

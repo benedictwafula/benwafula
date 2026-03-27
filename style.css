@@ -13,6 +13,50 @@ header {
   z-index: 1000;
   border-bottom: 1px solid var(--border);
 }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--heading);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  nav {
+    position: relative;
+    flex-wrap: nowrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 220px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1200;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    margin-left: 0;
+  }
+}
+
 
 /* Prevent content hiding behind fixed header */
 body {
